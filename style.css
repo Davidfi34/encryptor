@@ -1,0 +1,107 @@
+:root {
+    --dark-900: #33264A;
+    --dark-600: #51406c;
+    --dark-300: #786792;
+    --dark-100: #aca0bf;
+    --orange: #E88064;
+    --orange-600: #eca692;
+    --green: #28af98;
+    --green-800: #57bead;
+    --text: #DEEEF3;
+    --white: #fff;
+
+  }
+  
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: var(--dark-900);
+}
+
+p{
+    color:var(--white);
+}
+
+
+
+.result{
+    background-color: var(--dark-600);
+    color: var(--text);
+    min-height: 70vh;
+    margin-top: 50px;
+}
+
+.result #content{
+    hyphens: auto;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+#Encriptar{
+    width: 200px;
+    background-color: var(--green);
+    color: var(--white);
+    border: none;
+
+}
+
+#Encriptar:hover{
+    background-color: var(--green-800);
+    color: var(--white);
+}
+
+#Desencriptar{
+    width: 200px;
+    background-color: var(--orange);
+    color: var(--white);
+    border: none;
+}
+
+#Desencriptar:hover{
+    background-color: var(--orange-600);
+    color: var(--white);
+}
+
+#copy{
+    background-color: var(--dark-100);
+    border: none;
+    color: var(--white);
+}
+
+#copy:hover{
+    background-color: var(--green-800);
+}
+
+
+#textarea {
+    font-size: 25px;
+    height: 450px;
+    background-color:var(--dark-900);
+    color: var(--white);
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    resize: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+
+
+  @media (max-width: 960px){
+    .result{
+        font-size: 15px;
+    }
+  }
+
+  @media (max-width: 540px) {
+
+        #textarea {
+            font-size: 18px;
+            height: 300px;
+        } 
+
+
+  }
+  
