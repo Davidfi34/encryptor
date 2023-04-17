@@ -1,5 +1,5 @@
-const encrip = document.getElementById("Encriptar").addEventListener("click", Encrypt );
-const desencrip = document.getElementById("Desencriptar").addEventListener("click", Decrypt );
+const encrip = document.getElementById("Encriptar").addEventListener("click", encrypt );
+const desencrip = document.getElementById("Desencriptar").addEventListener("click", decrypt );
 const copyButton = document.getElementById("copy").addEventListener("click", copyText);
 const copy = document.getElementById("copy");
 const textarea = document.getElementById("textarea");
@@ -35,68 +35,49 @@ textarea.addEventListener('input', function() {
 
 
   
-function Encrypt(){
+function encrypt(){
     text = textarea.value;
     if (text === '') return;
-    let newText = cleanText(text.toLowerCase());
-    let arraytext = CreateArray(newText," ");
-    let EncryptedArray = [];
-        
-    for (let i = 0; i < arraytext.length; i++) {
-            let word = arraytext[i];
-            let wordEncrypted = '';
-    
-        for (let j = 0; j < word.length; j++) {
-                let letter = checkWord(word[j]);
-                wordEncrypted += `${letter}`
-        } 
-        EncryptedArray.push(wordEncrypted);
-    } 
-    textEncrypt = EncryptedArray.join(' ');
+    let string = cleanText(text.toLowerCase()).split('');
+    textEncrypt = replaceLetters(string);
     cleanInput();
     hide();
     result.innerHTML += textEncrypt;
     copy.style.display = 'block';
-    return textEncrypt;
+ 
+}
+
+
+function replaceLetters(string) {
+    for (let i = 0; i < string.length; i++) {
+        if (letterMap[string[i]]) string[i] = letterMap[string[i]];
+    }
+    return string.join('');
 }
 
 
 
-function Decrypt() {
+function decrypt() {
     text = textarea.value;
     if (text === '') return '';
-    let newText = cleanText(text.toLowerCase());
-    let words = CreateArray(newText," ");
+    let string = cleanText(text.toLowerCase());
+    let words = CreateArray(string, " ");
 
     words = words.map(word => {
-        let wordDecrypted = '';
-        while (word.length > 0) {
-            let found = false;
-
-            for (let key in letterMap) {
-                if (word.startsWith(letterMap[key])) {
-                    wordDecrypted += key;
-                    word = word.slice(letterMap[key].length);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                wordDecrypted += word[0];
-                word = word.slice(1);
-            }
+        for (let key in letterMap) {
+            word = word.replaceAll(letterMap[key], key);
         }
-        return wordDecrypted;
+        return word;
     });
-
 
     textDecrypt = words.join(' ');
     cleanInput();
     hide();
     result.innerHTML += textDecrypt;
     copy.style.display = 'block';
-    return textDecrypt;
 }
+
+
 
 
 function CreateArray(text,separation){
