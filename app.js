@@ -37,7 +37,7 @@ textarea.addEventListener('input', function() {
   
 function encrypt(){
     text = textarea.value;
-    if (text === '') return;
+    if (text === '') return; 
     let string = cleanText(text.toLowerCase()).split('');
     textEncrypt = replaceLetters(string);
     cleanInput();
@@ -61,7 +61,7 @@ function decrypt() {
     text = textarea.value;
     if (text === '') return '';
     let string = cleanText(text.toLowerCase());
-    let words = CreateArray(string, " ");
+    let words = string.split(' ');
 
     words = words.map(word => {
         for (let key in letterMap) {
@@ -78,24 +78,9 @@ function decrypt() {
 }
 
 
-
-
-function CreateArray(text,separation){
-    return text.split(separation);
-}
-
-
 function cleanText(text){
     let acentos = {'á': 'a','é': 'e','í': 'i','ó': 'o','ú': 'u'};
     return text.replace(/[áéíóú]/g, letra => acentos[letra] || letra);  
-}
-
-
-function checkWord(letter) {
-    let newLetter = letter;
-    if (letter in letterMap) newLetter = letterMap[letter];
-    else return letter;
-    return newLetter;
 }
 
  
